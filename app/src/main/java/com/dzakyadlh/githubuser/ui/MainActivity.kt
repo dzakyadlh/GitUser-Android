@@ -1,4 +1,4 @@
-package com.dzakyadlh.githubuser
+package com.dzakyadlh.githubuser.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,9 +12,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        with(binding) {
-            searchView.setupWithSearchBar(searchBar)
-        }
     }
 }
