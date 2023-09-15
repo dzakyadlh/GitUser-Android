@@ -10,10 +10,10 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 
 interface APIService {
-    @GET("search/users")
+    @GET("search/users/q={username}")
     @Headers("Authorization: token <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>")
     fun getSearchResults(
-        @Path("q") q: Editable?
+        @Path("username") username: Editable?
     ): Call<GithubUserSearchResponse>
 
     @GET("users/{username}")

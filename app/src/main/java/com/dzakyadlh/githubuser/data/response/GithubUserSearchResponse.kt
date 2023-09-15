@@ -11,7 +11,7 @@ data class GithubUserSearchResponse(
     val incompleteResults: Boolean,
 
     @field:SerializedName("items")
-    val items: List<GithubUserSearchResponse>
+    val items: List<ItemsItem>
 )
 
 data class ItemsItem(
