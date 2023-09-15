@@ -2,13 +2,13 @@ package com.dzakyadlh.githubuser.data.response
 
 import com.google.gson.annotations.SerializedName
 
-data class GithubUserFollowingResponse(
+data class GithubUserFollowsResponse(
 
-	@field:SerializedName("GithubUserFollowingResponse")
-	val githubUserFollowingResponse: List<GithubUserFollowingResponseItem>
+	@field:SerializedName("GithubUserFollowsResponse")
+	val githubUserFollowsResponse: List<GithubUserFollowsResponseItem>
 )
 
-data class GithubUserFollowingResponseItem(
+data class GithubUserFollowsResponseItem(
 
 	@field:SerializedName("avatar_url")
 	val avatarUrl: String,
