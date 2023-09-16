@@ -23,12 +23,13 @@ class SearchViewModel : ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
 
     init {
-        findUser()
+        findUser(binding?.searchView?.text.toString())
     }
 
-    private fun findUser() {
+    fun findUser(query: String) {
         _isLoading.value = true
-        val client = APIConfig.getAPIService().getSearchResults(binding?.searchView?.text)
+        val client =
+            APIConfig.getAPIService().getSearchResults(query)
         client.enqueue(object : Callback<GithubUserSearchResponse> {
             override fun onResponse(
                 call: Call<GithubUserSearchResponse>,
@@ -39,6 +40,7 @@ class SearchViewModel : ViewModel() {
                     val responseBody = response.body()
                     if (responseBody != null) {
                         _listUser.value = response.body()?.items
+                        Log.d("res", "$_listUser")
                     } else {
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
@@ -53,6 +55,6 @@ class SearchViewModel : ViewModel() {
     }
 
     companion object {
-        private const val TAG = "SearchUserFragment"
+        private const val TAG = "SearchViewModel"
     }
 }

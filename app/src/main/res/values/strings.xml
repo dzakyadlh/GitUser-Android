@@ -10,4 +10,6 @@
     <string name="following_list">Following List</string>
     <string name="view_github">View Github</string>
     <string name="test">Test</string>
+    <string name="detail">Detail</string>
+    <string name="repos">Repos</string>
 </resources>

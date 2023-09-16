@@ -1,5 +1,7 @@
 package com.dzakyadlh.githubuser.ui
 
+import android.content.Intent
+import android.content.Intent.EXTRA_USER
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -25,8 +27,13 @@ class SearchAdapter :
 
     class SearchViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(result: ItemsItem) {
-            Glide.with(binding.listImg).load(result.avatarUrl).into(binding.listImg)
+            Glide.with(itemView.context).load(result.avatarUrl).into(binding.listImg)
             binding.listName.text = result.login
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, DetailActivity::class.java)
+                intent.putExtra(EXTRA_USER, result.login)
+                itemView.context.startActivity(intent)
+            }
         }
     }
 
