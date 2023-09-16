@@ -51,6 +51,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        sectionsPagerAdapter.username = username
         val viewPager: ViewPager2 = findViewById(R.id.detail_view_pager)
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.detail_tabs)
@@ -69,7 +70,11 @@ class DetailActivity : AppCompatActivity() {
         Glide.with(this@DetailActivity).load(detail.avatarUrl).into(binding.detailProfilePic)
         binding.detailProfileUsername.text = detail.login
         binding.detailProfileName.text = detail.name
-        binding.detailProfileBio.text = detail.bio
+        if (detail.bio != "null") binding.detailProfileBio.text =
+            detail.bio else binding.detailProfileBio.text = "No bio"
+        binding.reposNum.text = detail.publicRepos.toString()
+        binding.followerNum.text = detail.followers.toString()
+        binding.followingNum.text = detail.following.toString()
         binding.btnViewGithub.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detail.htmlUrl))
             startActivity(intent)

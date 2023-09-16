@@ -40,7 +40,6 @@ class SearchViewModel : ViewModel() {
                     val responseBody = response.body()
                     if (responseBody != null) {
                         _listUser.value = response.body()?.items
-                        Log.d("res", "$_listUser")
                     } else {
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }

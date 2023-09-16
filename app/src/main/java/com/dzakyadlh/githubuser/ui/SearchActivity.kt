@@ -2,7 +2,6 @@ package com.dzakyadlh.githubuser.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -71,7 +70,6 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setListUserData(searchResponse: List<ItemsItem>) {
-        Log.d("Search Response", "$searchResponse")
         val adapter = SearchAdapter()
         adapter.submitList(searchResponse)
         binding.searchResults.adapter = adapter
