@@ -18,13 +18,13 @@ class FollowsFragment : Fragment() {
     companion object {
         const val ARG_USERNAME = "username"
         const val ARG_POSITION = "position"
-        fun getInstance(username: String): FollowsFragment {
-            val fragment = FollowsFragment()
-            val bundle = Bundle()
-            bundle.putString(ARG_USERNAME, username)
-            fragment.arguments = bundle
-            return fragment
-        }
+//        fun getInstance(username: String): FollowsFragment {
+//            val fragment = FollowsFragment()
+//            val bundle = Bundle()
+//            bundle.putString(ARG_USERNAME, username)
+//            fragment.arguments = bundle
+//            return fragment
+//        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,28 +42,30 @@ class FollowsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val detailViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(DetailViewModel::class.java)
-        detailViewModel.listFollower.observe(viewLifecycleOwner) { listFollower ->
-            setListFollowsData(listFollower)
-        }
-        detailViewModel.listFollowing.observe(viewLifecycleOwner) { listFollowing ->
-            setListFollowsData(listFollowing)
-        }
-        detailViewModel.isLoading.observe(viewLifecycleOwner) {
-            showLoading(it)
-        }
 
         arguments?.let { args ->
             val position = args.getInt(ARG_POSITION)
-            val username = args.getString(ARG_USERNAME)
-            if (position == 1 && username != null) {
+            val username = args.getString(ARG_USERNAME).toString()
+            if (position == 1) {
                 detailViewModel.getFollowers(username)
-            } else if (username != null) {
+                detailViewModel.listFollower.observe(viewLifecycleOwner) { listFollower ->
+                    setListFollowsData(listFollower)
+                }
+                detailViewModel.isLoading.observe(viewLifecycleOwner) {
+                    showLoading(it)
+                }
+            } else {
                 detailViewModel.getFollowing(username)
+                detailViewModel.listFollowing.observe(viewLifecycleOwner) { listFollowing ->
+                    setListFollowsData(listFollowing)
+                }
+                detailViewModel.isLoading.observe(viewLifecycleOwner) {
+                    showLoading(it)
+                }
             }
         }
 

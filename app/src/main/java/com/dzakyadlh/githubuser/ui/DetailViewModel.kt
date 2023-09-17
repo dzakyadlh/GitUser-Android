@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dzakyadlh.githubuser.data.response.GithubUserDetailResponse
-import com.dzakyadlh.githubuser.data.response.GithubUserFollowsResponse
 import com.dzakyadlh.githubuser.data.response.GithubUserFollowsResponseItem
 import com.dzakyadlh.githubuser.data.retrofit.APIConfig
 import retrofit2.Call
@@ -55,20 +54,23 @@ class DetailViewModel : ViewModel() {
     fun getFollowers(username: String) {
         _isLoading.value = true
         val client = APIConfig.getAPIService().getUserFollowers(username)
-        client.enqueue(object : Callback<GithubUserFollowsResponse> {
+        client.enqueue(object : Callback<List<GithubUserFollowsResponseItem>> {
             override fun onResponse(
-                call: Call<GithubUserFollowsResponse>,
-                response: Response<GithubUserFollowsResponse>
+                call: Call<List<GithubUserFollowsResponseItem>>,
+                response: Response<List<GithubUserFollowsResponseItem>>
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _listFollower.value = response.body()?.githubUserFollowsResponse
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        _listFollower.value = response.body()
+                    } else {
+                        Log.e(TAG, "onFailure: ${response.message()}")
+                    }
                 }
             }
 
-            override fun onFailure(call: Call<GithubUserFollowsResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<GithubUserFollowsResponseItem>>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
@@ -78,20 +80,23 @@ class DetailViewModel : ViewModel() {
     fun getFollowing(username: String) {
         _isLoading.value = true
         val client = APIConfig.getAPIService().getUserFollowing(username)
-        client.enqueue(object : Callback<GithubUserFollowsResponse> {
+        client.enqueue(object : Callback<List<GithubUserFollowsResponseItem>> {
             override fun onResponse(
-                call: Call<GithubUserFollowsResponse>,
-                response: Response<GithubUserFollowsResponse>
+                call: Call<List<GithubUserFollowsResponseItem>>,
+                response: Response<List<GithubUserFollowsResponseItem>>
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _listFollowing.value = response.body()?.githubUserFollowsResponse
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        _listFollowing.value = response.body()
+                    } else {
+                        Log.e(TAG, "onFailure: ${response.message()}")
+                    }
                 }
             }
 
-            override fun onFailure(call: Call<GithubUserFollowsResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<GithubUserFollowsResponseItem>>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }

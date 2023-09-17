@@ -8,20 +8,27 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/gh_user"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/gh_user_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser"
         tools:targetApi="31">
         <activity
+            android:name=".ui.AboutActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.DetailActivity"
             android:exported="false"
+            android:parentActivityName=".ui.SearchActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.SearchActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GithubUser.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

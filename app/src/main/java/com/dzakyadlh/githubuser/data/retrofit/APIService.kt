@@ -1,7 +1,7 @@
 package com.dzakyadlh.githubuser.data.retrofit
 
 import com.dzakyadlh.githubuser.data.response.GithubUserDetailResponse
-import com.dzakyadlh.githubuser.data.response.GithubUserFollowsResponse
+import com.dzakyadlh.githubuser.data.response.GithubUserFollowsResponseItem
 import com.dzakyadlh.githubuser.data.response.GithubUserSearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -23,10 +23,10 @@ interface APIService {
     @GET("users/{username}/followers")
     fun getUserFollowers(
         @Path("username") username: String
-    ): Call<GithubUserFollowsResponse>
+    ): Call<List<GithubUserFollowsResponseItem>>
 
     @GET("users/{username}/following")
     fun getUserFollowing(
         @Path("username") username: String
-    ): Call<GithubUserFollowsResponse>
+    ): Call<List<GithubUserFollowsResponseItem>>
 }

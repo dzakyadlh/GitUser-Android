@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -57,8 +59,8 @@ class SearchActivity : AppCompatActivity() {
         binding.appBarLayout.setOnMenuItemClickListener { menuItem ->
 
             when (menuItem.itemId) {
-                R.id.detail -> {
-                    val intent = Intent(this, DetailActivity::class.java)
+                R.id.about -> {
+                    val intent = Intent(this, AboutActivity::class.java)
                     startActivity(intent)
                     true
                 }

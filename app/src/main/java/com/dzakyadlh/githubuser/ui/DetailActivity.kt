@@ -59,10 +59,6 @@ class DetailActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            elevation = 0f
-        }
     }
 
     private fun setUserDetail(detail: GithubUserDetailResponse) {
