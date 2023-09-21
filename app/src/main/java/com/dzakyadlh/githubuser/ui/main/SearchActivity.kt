@@ -1,4 +1,4 @@
-package com.dzakyadlh.githubuser.ui
+package com.dzakyadlh.githubuser.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dzakyadlh.githubuser.R
 import com.dzakyadlh.githubuser.data.response.ItemsItem
 import com.dzakyadlh.githubuser.databinding.ActivitySearchBinding
+import com.dzakyadlh.githubuser.ui.adapter.SearchAdapter
+import com.dzakyadlh.githubuser.ui.viewmodel.SearchViewModel
 
 class SearchActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.dzakyadlh.githubuser.ui
+package com.dzakyadlh.githubuser.ui.adapter
 
 import android.content.Intent
 import android.content.Intent.EXTRA_USER
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dzakyadlh.githubuser.data.response.GithubUserFollowsResponseItem
 import com.dzakyadlh.githubuser.databinding.ListItemBinding
+import com.dzakyadlh.githubuser.ui.main.DetailActivity
 
 class FollowsAdapter :
     ListAdapter<GithubUserFollowsResponseItem, FollowsAdapter.FollowsViewHolder>(DIFF_CALLBACK) {

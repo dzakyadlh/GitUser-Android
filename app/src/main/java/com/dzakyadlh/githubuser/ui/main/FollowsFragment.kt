@@ -1,4 +1,4 @@
-package com.dzakyadlh.githubuser.ui
+package com.dzakyadlh.githubuser.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dzakyadlh.githubuser.data.response.GithubUserFollowsResponseItem
 import com.dzakyadlh.githubuser.databinding.FragmentFollowsBinding
+import com.dzakyadlh.githubuser.ui.adapter.FollowsAdapter
+import com.dzakyadlh.githubuser.ui.viewmodel.DetailViewModel
 
 class FollowsFragment : Fragment() {
 

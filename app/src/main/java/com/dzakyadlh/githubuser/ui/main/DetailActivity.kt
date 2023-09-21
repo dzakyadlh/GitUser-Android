@@ -1,4 +1,4 @@
-package com.dzakyadlh.githubuser.ui
+package com.dzakyadlh.githubuser.ui.main
 
 import android.content.Intent
 import android.content.Intent.EXTRA_USER
@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide
 import com.dzakyadlh.githubuser.R
 import com.dzakyadlh.githubuser.data.response.GithubUserDetailResponse
 import com.dzakyadlh.githubuser.databinding.ActivityDetailBinding
+import com.dzakyadlh.githubuser.ui.viewmodel.DetailViewModel
+import com.dzakyadlh.githubuser.ui.adapter.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -58,7 +60,6 @@ class DetailActivity : AppCompatActivity() {
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
-
     }
 
     private fun setUserDetail(detail: GithubUserDetailResponse) {
@@ -74,6 +75,15 @@ class DetailActivity : AppCompatActivity() {
         binding.btnViewGithub.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detail.htmlUrl))
             startActivity(intent)
+        }
+        binding.btnShare.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.setType("text/plain")
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
+                "View and connect with this GitHub account! ${detail.htmlUrl}"
+            )
+            startActivity(Intent.createChooser(intent, "Share Account"))
         }
     }
 
