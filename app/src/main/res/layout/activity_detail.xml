@@ -174,14 +174,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detail_profile_bio" />
 
-            <CheckBox
+            <ImageView
                 android:id="@+id/btn_fav"
-                style="@style/Widget.Material3.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="15dp"
-                android:button="@drawable/favorite"
-                android:buttonTint="@color/red"
+                android:contentDescription="@string/favorite"
+                android:src="@drawable/favorite_border"
+                android:tag="Not Saved"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_view_github"
                 app:layout_constraintTop_toBottomOf="@+id/detail_profile_bio" />

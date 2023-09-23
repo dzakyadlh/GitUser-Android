@@ -8,7 +8,7 @@ import com.dzakyadlh.githubuser.database.FavoriteUserRoomDatabase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class FavoriteUserRepository(application: Application) {
+class FavoriteUserRepository private constructor(application: Application) {
     private val mFavoriteUserDao: FavoriteUserDao
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
 
@@ -21,6 +21,10 @@ class FavoriteUserRepository(application: Application) {
 
     fun insert(favoriteUser: FavoriteUser) {
         executorService.execute { mFavoriteUserDao.insert(favoriteUser) }
+    }
+
+    fun update(favoriteUser: FavoriteUser) {
+        executorService.execute { mFavoriteUserDao.update(favoriteUser) }
     }
 
     fun delete(favoriteUser: FavoriteUser) {
