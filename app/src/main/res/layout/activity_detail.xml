@@ -174,24 +174,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detail_profile_bio" />
 
-            <!--            <com.google.android.material.button.MaterialButton-->
-            <!--                android:id="@+id/btn_fav"-->
-            <!--                style="@style/Widget.Material3.Button.OutlinedButton.Icon"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="5dp"-->
-            <!--                android:gravity="center"-->
-            <!--                android:textAllCaps="true"-->
-            <!--                app:cornerRadius="5dp"-->
-            <!--                app:icon="@drawable/baseline_favorite_24"-->
-            <!--                app:iconGravity="textStart"-->
-            <!--                app:iconPadding="0dp"-->
-            <!--                app:iconSize="30dp"-->
-            <!--                app:iconTint="@color/red"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintStart_toEndOf="@+id/btn_view_github"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/detail_profile_bio" />-->
-
             <CheckBox
                 android:id="@+id/btn_fav"
                 style="@style/Widget.Material3.CompoundButton.CheckBox"

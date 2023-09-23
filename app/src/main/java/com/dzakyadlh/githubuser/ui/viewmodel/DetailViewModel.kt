@@ -1,5 +1,6 @@
 package com.dzakyadlh.githubuser.ui.viewmodel
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,11 +8,17 @@ import androidx.lifecycle.ViewModel
 import com.dzakyadlh.githubuser.data.response.GithubUserDetailResponse
 import com.dzakyadlh.githubuser.data.response.GithubUserFollowsResponseItem
 import com.dzakyadlh.githubuser.data.retrofit.APIConfig
+import com.dzakyadlh.githubuser.database.FavoriteUser
+import com.dzakyadlh.githubuser.repository.FavoriteUserRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel(application: Application) : ViewModel() {
+
+    private val mFavoriteUserRepository: FavoriteUserRepository =
+        FavoriteUserRepository(application)
+
     private val _detail = MutableLiveData<GithubUserDetailResponse>()
     val detail: LiveData<GithubUserDetailResponse> = _detail
 
@@ -101,5 +108,13 @@ class DetailViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
+    }
+
+    fun insert(favoriteUser: FavoriteUser) {
+        mFavoriteUserRepository.insert(favoriteUser)
+    }
+
+    fun delete(favoriteUser: FavoriteUser) {
+        mFavoriteUserRepository.delete(favoriteUser)
     }
 }
