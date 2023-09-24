@@ -12,4 +12,12 @@ class FavoriteUserViewModel(application: Application) : ViewModel() {
 
     fun getAllFavoriteUsers(): LiveData<List<FavoriteUser>> =
         mFavoriteUserRepository.getAllFavoriteUsers()
+
+//    fun saveFavorites(favoriteUser: FavoriteUser) {
+//        mFavoriteUserRepository.setFavoriteUsers(favoriteUser, true)
+//    }
+//
+//    fun deleteFavorite(favoriteUser: FavoriteUser) {
+//        mFavoriteUserRepository.setFavoriteUsers(favoriteUser, false)
+//    }
 }

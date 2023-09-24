@@ -8,7 +8,8 @@ import kotlinx.parcelize.Parcelize
 @Entity
 @Parcelize
 data class FavoriteUser(
-    @PrimaryKey(autoGenerate = false)
+    @field:PrimaryKey
     var username: String = "",
-    var avatarUrl: String? = null
+
+    var avatarUrl: String? = null,
 ) : Parcelable

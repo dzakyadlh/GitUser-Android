@@ -4,16 +4,17 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dzakyadlh.githubuser.R
 import com.dzakyadlh.githubuser.database.FavoriteUser
 import com.dzakyadlh.githubuser.databinding.ListFavoriteBinding
-import com.dzakyadlh.githubuser.helper.FavoriteUserDiffCallback
 import com.dzakyadlh.githubuser.ui.main.DetailActivity
 
-class FavoriteUserAdapter :
+class FavoriteUserAdapter(private val onFavoriteClick: (FavoriteUser) -> Unit) :
     ListAdapter<FavoriteUser, FavoriteUserAdapter.FavoriteUserViewHolder>(DIFF_CALLBACK) {
     private val listFavoriteUser = ArrayList<FavoriteUser>()
 
@@ -36,15 +37,7 @@ class FavoriteUserAdapter :
         }
     }
 
-    fun setListFavoriteUser(listFavoriteUser: List<FavoriteUser>) {
-        val diffCallback = FavoriteUserDiffCallback(this.listFavoriteUser, listFavoriteUser)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-        this.listFavoriteUser.clear()
-        this.listFavoriteUser.addAll(listFavoriteUser)
-        diffResult.dispatchUpdatesTo(this)
-    }
-
-    inner class FavoriteUserViewHolder(private val binding: ListFavoriteBinding) :
+    class FavoriteUserViewHolder(val binding: ListFavoriteBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(favoriteUser: FavoriteUser) {
             with(binding) {
@@ -68,6 +61,18 @@ class FavoriteUserAdapter :
     override fun onBindViewHolder(holder: FavoriteUserViewHolder, position: Int) {
         val favoriteUser = getItem(position)
         holder.bind(favoriteUser)
+
+        val btnFav = holder.binding.btnFav
+        if (favoriteUser in listFavoriteUser) {
+            btnFav.setImageDrawable(ContextCompat.getDrawable(btnFav.context, R.drawable.favorite))
+        } else {
+            btnFav.setImageDrawable(
+                ContextCompat.getDrawable(
+                    btnFav.context,
+                    R.drawable.favorite_border
+                )
+            )
+        }
     }
 
     override fun getItemCount(): Int {

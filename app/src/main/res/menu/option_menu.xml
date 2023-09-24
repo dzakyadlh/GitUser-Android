@@ -6,5 +6,9 @@
             android:id="@+id/about"
             android:title="@string/about_menu"
             app:showAsAction="never" />
+        <item
+            android:id="@+id/test"
+            android:title="@string/test"
+            app:showAsAction="never"/>
     </group>
 </menu>

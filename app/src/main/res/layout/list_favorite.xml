@@ -27,18 +27,13 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="dzakyadlh" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_share"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAllCaps="true"
-        app:icon="@drawable/sl_favorite"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconSize="24dp"
-        app:iconTint="@color/red"
+    <ImageView
+        android:id="@+id/btn_fav"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@string/favorite"
+        android:src="@drawable/favorite_border"
+        android:tag="Not Saved"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

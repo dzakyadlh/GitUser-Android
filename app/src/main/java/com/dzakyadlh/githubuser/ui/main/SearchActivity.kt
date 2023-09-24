@@ -67,6 +67,13 @@ class SearchActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.test -> {
+                    val intent = Intent(this, TestActivity::class.java)
+                    intent.putExtra("EXTRA_USERNAME", "Test")
+                    startActivity(intent)
+                    true
+                }
+
                 else -> false
             }
 
