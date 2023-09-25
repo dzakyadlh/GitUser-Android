@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dzakyadlh.githubuser.R
-import com.dzakyadlh.githubuser.data.response.ItemsItem
+import com.dzakyadlh.githubuser.data.remote.response.ItemsItem
 import com.dzakyadlh.githubuser.databinding.ActivitySearchBinding
 import com.dzakyadlh.githubuser.ui.adapter.SearchAdapter
 import com.dzakyadlh.githubuser.ui.viewmodel.SearchViewModel
@@ -63,6 +63,18 @@ class SearchActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.about -> {
                     val intent = Intent(this, AboutActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.favorite -> {
+                    val intent = Intent(this, FavoriteUserActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.settings -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
                     true
                 }

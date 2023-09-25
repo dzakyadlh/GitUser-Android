@@ -1,19 +1,16 @@
-package com.dzakyadlh.githubuser.database
+package com.dzakyadlh.githubuser.data.local.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Update
+import com.dzakyadlh.githubuser.data.local.entity.FavoriteUser
 
 @Dao
 interface FavoriteUserDao {
     @Insert
     fun insert(favoriteUser: FavoriteUser)
-
-    @Update
-    fun update(favoriteUser: FavoriteUser)
 
     @Delete
     fun delete(favoriteUser: FavoriteUser)

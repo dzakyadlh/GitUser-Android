@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.dzakyadlh.githubuser.R
-import com.dzakyadlh.githubuser.data.response.GithubUserDetailResponse
-import com.dzakyadlh.githubuser.database.FavoriteUser
+import com.dzakyadlh.githubuser.data.remote.response.GithubUserDetailResponse
+import com.dzakyadlh.githubuser.data.local.entity.FavoriteUser
 import com.dzakyadlh.githubuser.databinding.ActivityDetailBinding
 import com.dzakyadlh.githubuser.helper.ViewModelFactory
 import com.dzakyadlh.githubuser.ui.adapter.SectionsPagerAdapter

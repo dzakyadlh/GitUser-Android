@@ -1,4 +1,4 @@
-package com.dzakyadlh.githubuser.data.retrofit
+package com.dzakyadlh.githubuser.data.remote.retrofit
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

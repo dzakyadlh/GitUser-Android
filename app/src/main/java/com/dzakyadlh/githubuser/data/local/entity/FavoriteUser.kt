@@ -1,4 +1,4 @@
-package com.dzakyadlh.githubuser.database
+package com.dzakyadlh.githubuser.data.local.entity
 
 import android.os.Parcelable
 import androidx.room.Entity

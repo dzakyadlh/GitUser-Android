@@ -17,4 +17,7 @@
     <string name="my_bio">Just a person who loves codes, anime, and games. On the way to be an outstanding Full Stack Developer.</string>
     <string name="visit_my_github_page">Visit my GitHub page</string>
     <string name="favorite">favorite</string>
+    <string name="favorites">Favorites</string>
+    <string name="settings">Settings</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>

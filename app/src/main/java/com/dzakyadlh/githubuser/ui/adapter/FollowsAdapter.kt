@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dzakyadlh.githubuser.data.response.GithubUserFollowsResponseItem
+import com.dzakyadlh.githubuser.data.remote.response.GithubUserFollowsResponseItem
 import com.dzakyadlh.githubuser.databinding.ListItemBinding
 import com.dzakyadlh.githubuser.ui.main.DetailActivity
 

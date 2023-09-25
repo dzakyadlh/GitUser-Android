@@ -1,7 +1,7 @@
 package com.dzakyadlh.githubuser.helper
 
 import androidx.recyclerview.widget.DiffUtil
-import com.dzakyadlh.githubuser.database.FavoriteUser
+import com.dzakyadlh.githubuser.data.local.entity.FavoriteUser
 
 class FavoriteUserDiffCallback(
     private val oldFavoriteUserList: List<FavoriteUser>,

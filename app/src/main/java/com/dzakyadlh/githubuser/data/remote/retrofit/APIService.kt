@@ -1,8 +1,8 @@
-package com.dzakyadlh.githubuser.data.retrofit
+package com.dzakyadlh.githubuser.data.remote.retrofit
 
-import com.dzakyadlh.githubuser.data.response.GithubUserDetailResponse
-import com.dzakyadlh.githubuser.data.response.GithubUserFollowsResponseItem
-import com.dzakyadlh.githubuser.data.response.GithubUserSearchResponse
+import com.dzakyadlh.githubuser.data.remote.response.GithubUserDetailResponse
+import com.dzakyadlh.githubuser.data.remote.response.GithubUserFollowsResponseItem
+import com.dzakyadlh.githubuser.data.remote.response.GithubUserSearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

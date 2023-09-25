@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dzakyadlh.githubuser.data.response.GithubUserSearchResponse
-import com.dzakyadlh.githubuser.data.response.ItemsItem
-import com.dzakyadlh.githubuser.data.retrofit.APIConfig
+import com.dzakyadlh.githubuser.data.remote.response.GithubUserSearchResponse
+import com.dzakyadlh.githubuser.data.remote.response.ItemsItem
+import com.dzakyadlh.githubuser.data.remote.retrofit.APIConfig
 import com.dzakyadlh.githubuser.databinding.ActivitySearchBinding
 import retrofit2.Call
 import retrofit2.Callback

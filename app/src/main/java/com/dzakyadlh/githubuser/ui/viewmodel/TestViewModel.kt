@@ -2,8 +2,8 @@ package com.dzakyadlh.githubuser.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
-import com.dzakyadlh.githubuser.database.FavoriteUser
-import com.dzakyadlh.githubuser.repository.FavoriteUserRepository
+import com.dzakyadlh.githubuser.data.FavoriteUserRepository
+import com.dzakyadlh.githubuser.data.local.entity.FavoriteUser
 
 class TestViewModel(application: Application) : ViewModel() {
     private val mFavoriteUserRepository: FavoriteUserRepository =
@@ -11,10 +11,6 @@ class TestViewModel(application: Application) : ViewModel() {
 
     fun insert(favoriteUser: FavoriteUser) {
         mFavoriteUserRepository.insert(favoriteUser)
-    }
-
-    fun update(favoriteUser: FavoriteUser) {
-        mFavoriteUserRepository.update(favoriteUser)
     }
 
     fun delete(favoriteUser: FavoriteUser) {

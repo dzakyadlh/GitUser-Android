@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.dzakyadlh.githubuser.ui.viewmodel.FavoriteUserViewModel
 import com.dzakyadlh.githubuser.ui.viewmodel.TestViewModel
 
-class ViewModelFactory private constructor(private val mApplication: Application) :
+class ViewModelFactory private constructor(
+    private val mApplication: Application
+) :
     ViewModelProvider.NewInstanceFactory() {
     companion object {
         @Volatile

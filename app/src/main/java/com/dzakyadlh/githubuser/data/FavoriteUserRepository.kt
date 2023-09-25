@@ -1,10 +1,10 @@
-package com.dzakyadlh.githubuser.repository
+package com.dzakyadlh.githubuser.data
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import com.dzakyadlh.githubuser.database.FavoriteUser
-import com.dzakyadlh.githubuser.database.FavoriteUserDao
-import com.dzakyadlh.githubuser.database.FavoriteUserRoomDatabase
+import com.dzakyadlh.githubuser.data.local.entity.FavoriteUser
+import com.dzakyadlh.githubuser.data.local.room.FavoriteUserDao
+import com.dzakyadlh.githubuser.data.local.room.FavoriteUserRoomDatabase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -23,10 +23,6 @@ class FavoriteUserRepository(application: Application) {
 
     fun insert(favoriteUser: FavoriteUser) {
         executorService.execute { mFavoriteUserDao.insert(favoriteUser) }
-    }
-
-    fun update(favoriteUser: FavoriteUser) {
-        executorService.execute { mFavoriteUserDao.update(favoriteUser) }
     }
 
     fun delete(favoriteUser: FavoriteUser) {

@@ -10,13 +10,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dzakyadlh.githubuser.R
-import com.dzakyadlh.githubuser.database.FavoriteUser
+import com.dzakyadlh.githubuser.data.local.entity.FavoriteUser
 import com.dzakyadlh.githubuser.databinding.ListFavoriteBinding
 import com.dzakyadlh.githubuser.ui.main.DetailActivity
 
 class FavoriteUserAdapter(private val onFavoriteClick: (FavoriteUser) -> Unit) :
     ListAdapter<FavoriteUser, FavoriteUserAdapter.FavoriteUserViewHolder>(DIFF_CALLBACK) {
     private val listFavoriteUser = ArrayList<FavoriteUser>()
+
+    var isFavorite = false
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<FavoriteUser>() {
@@ -65,6 +67,7 @@ class FavoriteUserAdapter(private val onFavoriteClick: (FavoriteUser) -> Unit) :
         val btnFav = holder.binding.btnFav
         if (favoriteUser in listFavoriteUser) {
             btnFav.setImageDrawable(ContextCompat.getDrawable(btnFav.context, R.drawable.favorite))
+            isFavorite = true
         } else {
             btnFav.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -72,6 +75,10 @@ class FavoriteUserAdapter(private val onFavoriteClick: (FavoriteUser) -> Unit) :
                     R.drawable.favorite_border
                 )
             )
+            isFavorite = false
+        }
+        btnFav.setOnClickListener {
+            onFavoriteClick(favoriteUser)
         }
     }
 

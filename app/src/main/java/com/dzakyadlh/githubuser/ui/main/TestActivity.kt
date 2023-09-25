@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.dzakyadlh.githubuser.database.FavoriteUser
+import com.dzakyadlh.githubuser.data.local.entity.FavoriteUser
 import com.dzakyadlh.githubuser.databinding.ActivityTestBinding
 import com.dzakyadlh.githubuser.helper.ViewModelFactory
 import com.dzakyadlh.githubuser.ui.viewmodel.TestViewModel
@@ -35,7 +35,6 @@ class TestActivity : AppCompatActivity() {
         binding = ActivityTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        testViewModel = obtainViewModel(this@TestActivity)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             favoriteUser = intent.getParcelableExtra(EXTRA_USER, FavoriteUser::class.java)
@@ -44,19 +43,19 @@ class TestActivity : AppCompatActivity() {
         val username: String = TEST_USERNAME
         val avatarurl: String = TEST_AVATARURL
 
-        if (favoriteUser != null) {
-            binding.btnFav.setOnClickListener {
-                favoriteUser.let { favoriteUser ->
-                    favoriteUser?.username = username
-                    favoriteUser?.avatarUrl = avatarurl
-                }
-                testViewModel.insert(favoriteUser as FavoriteUser)
-                showToast(ALERT_DIALOG_ADD)
-            }
-        } else {
-            favoriteUser = FavoriteUser()
-
-        }
+//        if (favoriteUser != null) {
+//            binding.btnFav.setOnClickListener {
+//                favoriteUser.let { favoriteUser ->
+//                    favoriteUser?.username = username
+//                    favoriteUser?.avatarUrl = avatarurl
+//                }
+//                testViewModel.insert(favoriteUser as FavoriteUser)
+//                showToast(ALERT_DIALOG_ADD)
+//            }
+//        } else {
+//            favoriteUser = FavoriteUser()
+//
+//        }
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): TestViewModel {
