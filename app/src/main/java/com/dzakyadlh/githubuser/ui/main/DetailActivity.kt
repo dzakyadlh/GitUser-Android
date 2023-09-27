@@ -6,18 +6,21 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.dzakyadlh.githubuser.R
-import com.dzakyadlh.githubuser.data.remote.response.GithubUserDetailResponse
 import com.dzakyadlh.githubuser.data.local.entity.FavoriteUser
+import com.dzakyadlh.githubuser.data.remote.response.GithubUserDetailResponse
 import com.dzakyadlh.githubuser.databinding.ActivityDetailBinding
 import com.dzakyadlh.githubuser.helper.ViewModelFactory
 import com.dzakyadlh.githubuser.ui.adapter.SectionsPagerAdapter
 import com.dzakyadlh.githubuser.ui.viewmodel.DetailViewModel
+import com.dzakyadlh.githubuser.ui.viewmodel.FavoriteViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -25,7 +28,13 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
 
-    private lateinit var detailViewModel: DetailViewModel
+    private val detailViewModel: DetailViewModel by viewModels {
+        ViewModelFactory.getInstance(application)
+    }
+
+    private val favoriteViewModel: FavoriteViewModel by viewModels {
+        ViewModelFactory.getInstance(application)
+    }
 
     private var favoriteUser: FavoriteUser? = null
 
@@ -37,7 +46,6 @@ class DetailActivity : AppCompatActivity() {
             R.string.followers,
             R.string.following
         )
-        const val EXTRA_FAVORITE = "extra_favorite"
         const val ALERT_DIALOG_ADD = "Added to favorite"
         const val ALERT_DIALOG_REMOVE = "Removed from favorite"
     }
@@ -47,10 +55,6 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val detailViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(DetailViewModel::class.java)
         detailViewModel.detail.observe(this) { detail ->
             setUserDetail(detail)
         }
@@ -62,11 +66,26 @@ class DetailActivity : AppCompatActivity() {
 
         if (username != null) {
             detailViewModel.getDetail(username)
-//            if (favoriteUser != null) {
-//                for (user in favoriteUser) {
-//                    if (user == username) isFavorite = true
-//                }
-//            }
+            favoriteUser = FavoriteUser(username.toString(), null)
+            favoriteViewModel.getFavoriteUser(username).observe(this) { favoriteUser ->
+                if (favoriteUser != null) {
+                    binding.btnFav.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.btnFav.context,
+                            R.drawable.favorite
+                        )
+                    )
+                    isFavorite = true
+                } else {
+                    binding.btnFav.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            binding.btnFav.context,
+                            R.drawable.favorite_border
+                        )
+                    )
+                    isFavorite = false
+                }
+            }
         }
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
@@ -93,17 +112,18 @@ class DetailActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(detail.htmlUrl))
             startActivity(intent)
         }
-//        binding.btnFav.setOnClickListener {
-//            favoriteUser.let { favoriteUser ->
-//                favoriteUser?.username = detail.login
-//                favoriteUser?.avatarUrl = detail.avatarUrl
-//            }
-//            detailViewModel.insert(favoriteUser as FavoriteUser)
-//            showToast(ALERT_DIALOG_ADD)
-//        }
+        binding.btnFav.setOnClickListener {
+            if (isFavorite) {
+                favoriteViewModel.delete(favoriteUser as FavoriteUser)
+            } else {
+                favoriteUser = FavoriteUser(detail.login, detail.avatarUrl)
+                favoriteViewModel.insert(favoriteUser as FavoriteUser)
+            }
+            showToast(ALERT_DIALOG_ADD)
+        }
         binding.btnShare.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
-            intent.setType("text/plain")
+            intent.type = "text/plain"
             intent.putExtra(
                 Intent.EXTRA_TEXT,
                 "View and connect with this GitHub account! ${detail.htmlUrl}"

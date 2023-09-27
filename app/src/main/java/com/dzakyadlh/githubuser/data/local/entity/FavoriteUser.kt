@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 @Entity
 @Parcelize
 data class FavoriteUser(
-    @field:PrimaryKey
+    @field:PrimaryKey(autoGenerate = false)
     var username: String = "",
 
     var avatarUrl: String? = null,
