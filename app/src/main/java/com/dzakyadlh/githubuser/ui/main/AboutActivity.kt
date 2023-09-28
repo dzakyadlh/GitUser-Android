@@ -1,4 +1,4 @@
-package com.dzakyadlh.githubuser.ui
+package com.dzakyadlh.githubuser.ui.main
 
 import android.content.Intent
 import android.net.Uri

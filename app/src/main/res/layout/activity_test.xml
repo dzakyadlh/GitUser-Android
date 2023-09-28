@@ -17,11 +17,11 @@
             android:elevation="4dp"
             android:theme="@style/AppBarTheme"
             app:popupTheme="@style/AppBarTheme.Popup"
-            app:title="User Detail" />
+            app:title="@string/test" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:id="@+id/detail_linear_layout"
+        android:id="@+id/test_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/detail_profile_pic"
+                android:id="@+id/test_profile_pic"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="20dp"
@@ -43,7 +43,7 @@
                 tools:src="@drawable/ic_launcher_background" />
 
             <TextView
-                android:id="@+id/detail_profile_name"
+                android:id="@+id/test_profile_name"
                 style="@style/bigText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,18 +51,18 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/red"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_profile_pic"
+                app:layout_constraintTop_toBottomOf="@+id/test_profile_pic"
                 tools:text="My Name" />
 
             <TextView
-                android:id="@+id/detail_profile_username"
+                android:id="@+id/test_profile_username"
                 style="@style/mediumText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/poppins_light"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_profile_name"
+                app:layout_constraintTop_toBottomOf="@+id/test_profile_name"
                 tools:text="/@myUsername" />
 
             <LinearLayout
@@ -145,7 +145,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/detail_profile_bio"
+                android:id="@+id/test_profile_bio"
                 style="@style/smallText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
                 android:fontFamily="@font/poppins_light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_profile_username"
+                app:layout_constraintTop_toBottomOf="@+id/test_profile_username"
                 tools:text="Hello world its me someone!" />
 
             <Button
@@ -172,7 +172,7 @@
                 app:cornerRadius="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_profile_bio" />
+                app:layout_constraintTop_toBottomOf="@+id/test_profile_bio" />
 
             <ImageView
                 android:id="@+id/btn_fav"
@@ -184,7 +184,7 @@
                 android:tag="Not Saved"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_view_github"
-                app:layout_constraintTop_toBottomOf="@+id/detail_profile_bio" />
+                app:layout_constraintTop_toBottomOf="@+id/test_profile_bio" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_share"
@@ -201,7 +201,7 @@
                 app:iconTint="@color/red"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_fav"
-                app:layout_constraintTop_toBottomOf="@+id/detail_profile_bio" />
+                app:layout_constraintTop_toBottomOf="@+id/test_profile_bio" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -216,31 +216,6 @@
                 tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/detail_tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_view_github"
-                app:tabTextColor="@color/red" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/detail_view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_tabs" />
-
-        </LinearLayout>
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

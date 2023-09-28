@@ -1,16 +1,23 @@
-package com.dzakyadlh.githubuser.ui
+package com.dzakyadlh.githubuser.ui.main
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dzakyadlh.githubuser.R
-import com.dzakyadlh.githubuser.data.response.ItemsItem
+import com.dzakyadlh.githubuser.data.local.SettingPreferences
+import com.dzakyadlh.githubuser.data.local.dataStore
+import com.dzakyadlh.githubuser.data.remote.response.ItemsItem
 import com.dzakyadlh.githubuser.databinding.ActivitySearchBinding
+import com.dzakyadlh.githubuser.helper.SettingsViewModelFactory
+import com.dzakyadlh.githubuser.ui.adapter.SearchAdapter
+import com.dzakyadlh.githubuser.ui.viewmodel.MainViewModel
+import com.dzakyadlh.githubuser.ui.viewmodel.SearchViewModel
 
 class SearchActivity : AppCompatActivity() {
 
@@ -19,6 +26,20 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
+        
+        val pref = SettingPreferences.getInstance(application.dataStore)
+        val mainViewModel = ViewModelProvider(this, SettingsViewModelFactory(pref)).get(
+            MainViewModel::class.java
+        )
+
+        mainViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -61,6 +82,25 @@ class SearchActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.about -> {
                     val intent = Intent(this, AboutActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.favorite -> {
+                    val intent = Intent(this, FavoriteUserActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.settings -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.test -> {
+                    val intent = Intent(this, TestActivity::class.java)
+                    intent.putExtra("EXTRA_USERNAME", "Test")
                     startActivity(intent)
                     true
                 }

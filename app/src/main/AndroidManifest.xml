@@ -15,17 +15,29 @@
         android:theme="@style/Theme.GithubUser"
         tools:targetApi="31">
         <activity
-            android:name=".ui.AboutActivity"
+            android:name=".ui.main.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.TestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.FavoriteUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.utils.FavoriteUserAddUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.AboutActivity"
             android:exported="false"
-            android:parentActivityName=".ui.SearchActivity"
+            android:parentActivityName=".ui.main.SearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.DetailActivity"
+            android:name=".ui.main.DetailActivity"
             android:exported="false"
-            android:parentActivityName=".ui.SearchActivity"
+            android:parentActivityName=".ui.main.SearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.SearchActivity"
+            android:name=".ui.main.SearchActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.GithubUser.Splash">
