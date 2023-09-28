@@ -16,6 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        buildConfigField("String", "KEY", "\"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\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,6 +38,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
 }
@@ -65,6 +67,12 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.2")
     ksp("androidx.room:room-compiler:2.5.2")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:4.4.0")
+    testImplementation("org.mockito:mockito-inline:4.4.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test:rules:1.5.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
 }

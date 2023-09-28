@@ -10,7 +10,6 @@ import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.dzakyadlh.githubuser.R
@@ -115,11 +114,12 @@ class DetailActivity : AppCompatActivity() {
         binding.btnFav.setOnClickListener {
             if (isFavorite) {
                 favoriteViewModel.delete(favoriteUser as FavoriteUser)
+                showToast(ALERT_DIALOG_REMOVE)
             } else {
                 favoriteUser = FavoriteUser(detail.login, detail.avatarUrl)
                 favoriteViewModel.insert(favoriteUser as FavoriteUser)
+                showToast(ALERT_DIALOG_ADD)
             }
-            showToast(ALERT_DIALOG_ADD)
         }
         binding.btnShare.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
@@ -130,11 +130,6 @@ class DetailActivity : AppCompatActivity() {
             )
             startActivity(Intent.createChooser(intent, "Share Account"))
         }
-    }
-
-    private fun obtainViewModel(activity: AppCompatActivity): DetailViewModel {
-        val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory).get(DetailViewModel::class.java)
     }
 
     private fun showToast(message: String) {

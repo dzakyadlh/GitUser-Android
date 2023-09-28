@@ -1,8 +1,10 @@
 package com.dzakyadlh.githubuser.ui.main
 
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dzakyadlh.githubuser.databinding.ActivityFavoriteUserBinding
 import com.dzakyadlh.githubuser.helper.ViewModelFactory
@@ -14,6 +16,10 @@ class FavoriteUserActivity : AppCompatActivity() {
     private var _activityFavoriteUserBinding: ActivityFavoriteUserBinding? = null
     private val binding get() = _activityFavoriteUserBinding
 
+    private val favoriteUserViewModel: FavoriteUserViewModel by viewModels {
+        ViewModelFactory.getInstance(application)
+    }
+
     private lateinit var adapter: FavoriteUserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,17 +27,22 @@ class FavoriteUserActivity : AppCompatActivity() {
         _activityFavoriteUserBinding = ActivityFavoriteUserBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        val favoriteUserViewModel = obtainViewModel(this@FavoriteUserActivity)
+        adapter = FavoriteUserAdapter()
+
+        supportActionBar?.hide()
+
+        val layoutManager = LinearLayoutManager(this)
+        binding?.favoriteUsers?.layoutManager = layoutManager
+        val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
+        binding?.favoriteUsers?.addItemDecoration(itemDecoration)
+
         favoriteUserViewModel.getAllFavoriteUsers().observe(this) { favoriteUserList ->
+            Log.d("FavoriteUserActivity", "$favoriteUserList")
             if (favoriteUserList != null) {
-                adapter.submitList(favoriteUserList)
-                binding?.favoriteUsers?.adapter
+                adapter.submitList(favoriteUserList.toMutableList())
+                binding?.favoriteUsers?.adapter = adapter
             }
         }
-
-        binding?.favoriteUsers?.layoutManager = LinearLayoutManager(this)
-        binding?.favoriteUsers?.setHasFixedSize(true)
-        binding?.favoriteUsers?.adapter = adapter
     }
 
     override fun onDestroy() {
@@ -39,14 +50,4 @@ class FavoriteUserActivity : AppCompatActivity() {
         _activityFavoriteUserBinding = null
     }
 
-//    private fun setFavoriteUserList(favoriteUser: FavoriteUser) {
-//        adapter = FavoriteUserAdapter(favoriteUser)
-//        adapter.submitList(favoriteUser)
-//        binding?.favoriteUsers?.adapter
-//    }
-
-    private fun obtainViewModel(activity: AppCompatActivity): FavoriteUserViewModel {
-        val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory).get(FavoriteUserViewModel::class.java)
-    }
 }

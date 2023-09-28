@@ -26,7 +26,7 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
-        
+
         val pref = SettingPreferences.getInstance(application.dataStore)
         val mainViewModel = ViewModelProvider(this, SettingsViewModelFactory(pref)).get(
             MainViewModel::class.java
@@ -94,13 +94,6 @@ class SearchActivity : AppCompatActivity() {
 
                 R.id.settings -> {
                     val intent = Intent(this, SettingsActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
-                R.id.test -> {
-                    val intent = Intent(this, TestActivity::class.java)
-                    intent.putExtra("EXTRA_USERNAME", "Test")
                     startActivity(intent)
                     true
                 }

@@ -1,6 +1,5 @@
 package com.dzakyadlh.githubuser.ui.viewmodel
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel(application: Application) : ViewModel() {
+class DetailViewModel() : ViewModel() {
 
     private val _detail = MutableLiveData<GithubUserDetailResponse>()
     val detail: LiveData<GithubUserDetailResponse> = _detail

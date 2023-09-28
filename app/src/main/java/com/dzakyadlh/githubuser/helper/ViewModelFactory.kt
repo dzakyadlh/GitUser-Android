@@ -18,7 +18,7 @@ class ViewModelFactory private constructor(
         } else if (modelClass.isAssignableFrom(FavoriteViewModel::class.java)) {
             return FavoriteViewModel(mApplication) as T
         } else if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
-            return DetailViewModel(mApplication) as T
+            return DetailViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

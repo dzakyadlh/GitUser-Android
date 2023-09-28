@@ -20,13 +20,6 @@ class FollowsFragment : Fragment() {
     companion object {
         const val ARG_USERNAME = "username"
         const val ARG_POSITION = "position"
-//        fun getInstance(username: String): FollowsFragment {
-//            val fragment = FollowsFragment()
-//            val bundle = Bundle()
-//            bundle.putString(ARG_USERNAME, username)
-//            fragment.arguments = bundle
-//            return fragment
-//        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
