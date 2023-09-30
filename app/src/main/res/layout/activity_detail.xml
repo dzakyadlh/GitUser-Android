@@ -6,16 +6,17 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
             android:theme="@style/AppBarTheme"
+            app:menu="@menu/option_menu"
             app:popupTheme="@style/AppBarTheme.Popup"
             app:title="User Detail" />
     </com.google.android.material.appbar.AppBarLayout>

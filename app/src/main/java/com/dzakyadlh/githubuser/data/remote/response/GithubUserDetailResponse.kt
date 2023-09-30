@@ -10,14 +10,8 @@ data class GithubUserDetailResponse(
     @field:SerializedName("avatar_url")
     val avatarUrl: String,
 
-    @field:SerializedName("repos_url")
-    val reposUrl: String,
-
     @field:SerializedName("html_url")
     val htmlUrl: String,
-
-    @field:SerializedName("following_url")
-    val followingUrl: String,
 
     @field:SerializedName("following")
     val following: Int,
@@ -28,15 +22,9 @@ data class GithubUserDetailResponse(
     @field:SerializedName("bio")
     val bio: String,
 
-    @field:SerializedName("location")
-    val location: String,
-
     @field:SerializedName("public_repos")
     val publicRepos: Int,
 
     @field:SerializedName("login")
     val login: String,
-
-    @field:SerializedName("followers_url")
-    val followersUrl: String
 )

@@ -95,6 +95,32 @@ class DetailActivity : AppCompatActivity() {
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
+
+        binding.appBarLayout.setOnMenuItemClickListener { menuItem ->
+
+            when (menuItem.itemId) {
+                R.id.about -> {
+                    val intent = Intent(this, AboutActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.favorite -> {
+                    val intent = Intent(this, FavoriteUserActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.settings -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                else -> false
+            }
+
+        }
     }
 
     private fun setUserDetail(detail: GithubUserDetailResponse) {
